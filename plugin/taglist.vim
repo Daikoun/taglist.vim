@@ -1282,12 +1282,19 @@ function! s:Tlist_Window_Create()
     " Create a new window. If user prefers a horizontal window, then open
     " a horizontally split window. Otherwise open a vertically split
     " window
+" Create a new window. If user prefers a horizontal window, then open
+" a horizontally split window. Otherwise open a vertically split
+" window
     if g:Tlist_Use_Horiz_Window
         " Open a horizontally split window
         let win_dir = 'botright'
         " Horizontal window height
         let win_size = g:Tlist_WinHeight
-    else
+    elseif g:Tlist_Use_Split_Window
+        " Open the window in a horizontal split  of current window
+        let win_dir = 'abo'
+        let win_size = g:Tlist_WinWidth
+    else    
         if s:tlist_winsize_chgd == -1
             " Open a vertically split window. Increase the window size, if
             " needed, to accomodate the new window
